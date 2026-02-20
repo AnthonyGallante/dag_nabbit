@@ -1,0 +1,9 @@
+
+digraph {
+    graph [rankdir=LR, splines=curved];
+    node [shape=box, style="filled,rounded", fillcolor="#f0f0f0"];
+
+    "Home/Away" -> FreeThrows_Made;
+    MinutesPlayed -> FreeThrow_Attempts -> "FreeThrow_%";
+    OpponentFouls -> FreeThrow_Attempts -> FreeThrows_Made -> "FreeThrow_%";
+}
