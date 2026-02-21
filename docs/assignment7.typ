@@ -37,9 +37,16 @@ In this assignment, we build and validate one plausible causal model that can be
 
 = Literature Review
 
+== An Analysis of NBA Home Court Advantage @fettig_analysis
+This paper suggests that larger crowds are linked with better field goal shooting efficiency and higher scoring for the home team, but not win rate. Additionally, while referees tend to have a slight bias toward the home team, the researchers did not find that crowd size does not seem to further exaggerate this bias. Free throw performance specifically was not observed to change with crowd size when the referee bias was taken into consideration.
+
+== Quantifying Home Court Advantages for NCAA Basketball Statistics @vanbommel2021home
+Once again, researchers report a referee bias in favor of the home team, but van Bommel reports that crowd size could amplify the bias at the college level. University teams that perform at higher levels were also observed to benefit more from these biased home court benefits. This paper also shares the 
+
+== Influence of Home-Court Advantage in Elite Basketball @cuesta2024influence
+Cuesta et. al. suggest that travel distance and eastward jet lag affect visiting teams much more than crowd interactions. The researchers do acknowledge that large crowds are more likely to affect free throw shooting in high pressure situations.
 
 = Methods
-
 == Data
 The dataset of 45,324 player performances was used for this analysis, containing a combination of team and player level records made available through the HoopR R package (source). A data dictionary of the relevant data fields is shown below.
 
@@ -65,7 +72,7 @@ The dataset of 45,324 player performances was used for this analysis, containing
 
 == Causal Assumptions
 
-One possible directed acyclic graph (DAG) that could be used to model this system is shown below in @dag. Free throw attempts are dependent on both the amount of time a player spends on the court as well as the number of fouls committed by the opposing team. Here, the assertion is made that the number of successful free throws is somehow influenced by the player being at a different home court (the treatment variable). 
+One possible directed acyclic graph (DAG) that could be used to model this system is shown below in @dag. Free throw attempts are dependent on both the amount of time a player spends on the court as well as the number of fouls committed by the opposing team. Here, the assertion is made that the number of successful free throws is somehow influenced by the player being at a different home court (the treatment variable). Based on the literature referenced above, we should see little to no effect, but since we have not conditioned on crowds with distracting behavior, we might  
 
 #figure(
   image("../graphviz_graph.png", width:90%),
@@ -108,6 +115,8 @@ The DoWhy Python library makes several other validation methods available to the
 = Conclusions
 
 Using DoWhy to compute both linear and nonlinear causal effects, we estimate that players on visiting teams perform about 2 percentage points lower than they would at home games. The reader should be reminded that the dataset used does not include crowd distractions specifically, so perhaps the results are underwhelming. However, a measurable effect was calculated with this relatively small dataset and simple DAG. 
+
+Interestingly enough, when we look at the 111 player performances played at Arizona State University, who has a reputation for distracting their opponents, we observe a greater impact to free throw shooting. The average effect doubles to 4% and the conditional average treatment effect range is expanded significantly, with some players shooting 22 percentage points worse than otherwise, with some shooting up to 26% better. To gain a better understanding of the "Curtain of Distraction," however, we would likely want to compare player free throw shooting performance to include many seasons, both before and after 2013, when the curtain was unveiled for the first time. 
 
 // Bibliography
 #pagebreak()
